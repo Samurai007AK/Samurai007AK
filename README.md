@@ -1,50 +1,65 @@
-
-
-
-<h1 align="center">Hi 👋, I'm Arijit</h1>
-<h3 align="center">A passionate DevOps and AI/ML enthusiast from India</h3>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <img src="assets/banner-light.svg" width="100%" alt="Arijit Konar. MLOps and AI infrastructure. Curious builder: I find new tools, take them apart, and make them better.">
+</picture>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/DevOps-AWS%20%7C%20Docker%20%7C%20Kubernetes-blue?style=flat-square&logo=amazon-aws" alt="DevOps Badge"/>
-    <img src="https://img.shields.io/badge/AI/ML-Python%20%7C%20TensorFlow%20%7C%20PyTorch-yellow?style=flat-square&logo=python" alt="AI/ML Badge"/>
+  <a href="mailto:arijitkonar16@gmail.com"><img src="https://img.shields.io/badge/Email-arijitkonar16%40gmail.com-b3261e?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+  <a href="https://www.linkedin.com/in/arijit-konar-aa3b88256/"><img src="https://img.shields.io/badge/LinkedIn-Arijit%20Konar-1d1a16?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
 </p>
 
-<!-- Interactive SVG Animation -->
-<p align="center">
-    <img src="https://raw.githubusercontent.com/rajput2107/rajput2107/master/Assets/Developer.gif" width="300" alt="Developer Animation"/>
-</p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/heading-work-dark.svg">
+  <img src="assets/heading-work-light.svg" width="100%" alt="Work">
+</picture></p>
 
-- 🌱 I’m currently learning **DevOps**
+<a href="https://github.com/K4-LABS/gpumesh">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/card-gpumesh-dark.svg">
+  <img src="assets/card-gpumesh-light.svg" width="100%" alt="GPUMesh, which I maintain: borrow your friends' GPUs, a distributed compute mesh in pure Python.">
+</picture>
+</a>
+<a href="mailto:arijitkonar16@gmail.com?subject=Anchor%20demo">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/card-anchor-dark.svg">
+  <img src="assets/card-anchor-light.svg" width="100%" alt="Anchor, private beta: a vector store that lives in your own cloud, with hybrid search, migrations, evals and cost controls.">
+</picture>
+</a>
+<a href="https://github.com/Samurai007AK/HiddenHelp">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/card-hiddenhelp-dark.svg">
+  <img src="assets/card-hiddenhelp-light.svg" width="100%" alt="HiddenHelp: walk away from your screen and the video pauses; come back and it plays.">
+</picture>
+</a>
 
-- 📫 How to reach me **arijitkonar16@gmail.com**
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/heading-the-path-dark.svg">
+  <img src="assets/heading-the-path-light.svg" width="100%" alt="The path">
+</picture></p>
 
-- ⚡ Fun fact **I love to code**
+<a href="https://github.com/pulls?q=is%3Apr+author%3ASamurai007AK+-user%3ASamurai007AK">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/trail-dark.svg">
+  <img src="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/trail-light.svg" width="100%" alt="My pull requests to open-source projects, grouped by project">
+</picture>
+</a>
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://linkedin.com/in/https://www.linkedin.com/in/arijit-konar-aa3b88256/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/arijit-konar-aa3b88256/" height="30" width="40" /></a>
-<a href="https://instagram.com/arijit_konar16" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="arijit_konar16" height="30" width="40" /></a>
-</p>
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/heading-today-dark.svg">
+  <img src="assets/heading-today-light.svg" width="100%" alt="Today">
+</picture></p>
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> 
-    <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> 
-    <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40"/> </a> 
-    <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> 
-    <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> 
-    <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> 
-    <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> 
-    <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
-    <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
-    <a href="https://www.jenkins.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" alt="jenkins" width="40" height="40"/> </a> 
-    <a href="https://kafka.apache.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="kafka" width="40" height="40"/> </a> 
-    <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> 
-    <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> 
-    <a href="https://www.nginx.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="40" height="40"/> </a> 
-    <a href="https://opencv.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> 
-    <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="40" height="40"/> </a> 
-    <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> 
-    <a href="https://pytorch.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="40" height="40"/> </a> 
-    <a href="https://www.rabbitmq.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/rabbitmq/rabbitmq-icon.svg" alt="rabbitMQ" width="40" height="40"/> </a> 
-    <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit_learn" width="40" height="40"/> </a> 
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/painting-dark.svg">
+  <img src="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/painting-light.svg" width="100%" alt="Today's ink painting, drawn from my GitHub activity, beside a short quote for the day">
+</picture>
+
+<p align="center"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/heading-numbers-dark.svg">
+  <img src="assets/heading-numbers-light.svg" width="100%" alt="Numbers">
+</picture></p>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/stats-dark.svg">
+  <img src="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/stats-light.svg" width="100%" alt="Contributions, active days, longest streak, merged upstream pull requests and top languages over the last 12 months">
+</picture>
