@@ -16,6 +16,9 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+      - name: Check the trail logic
+        run: python test_daily.py
+        working-directory: scripts
       - name: Draw today's images and refresh the open-source table
         run: python scripts/daily.py dist README.md
         env:

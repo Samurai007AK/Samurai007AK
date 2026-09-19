@@ -144,7 +144,7 @@ def summarize(data, now):
         stalks=[r["contributions"]["totalCount"] for r in user["month"]["commitContributionsByRepository"]],
         merged=sum(r["merged"] for _, r in trail),
         projects=len(trail),
-        trail=trail[:8],
+        trail=trail[:10],  # room for new projects before the oldest drops off
         recent_merges=recent_merges,
         langs=[(name, size / total) for name, size in top],
     )
@@ -309,18 +309,39 @@ def ago(iso, now):
 TRAIL_START, TRAIL_END = "<!-- trail:start -->", "<!-- trail:end -->"
 
 
-def trail_markdown(s, login, now):
-    """A markdown table, so each project and pull request is a real link GitHub can follow."""
-    rows = ["| Project | Merged | Open | Latest pull request | |",
-            "| --- | --- | --- | --- | --- |"]
-    for name, r in s["trail"]:
-        prs = f"https://github.com/{name}/pulls?q=is%3Apr+author%3A{login}"
-        merged = f"**[{r['merged']}]({prs}+is%3Amerged)**" if r["merged"] else "–"
-        opened = f"[{r['open']}]({prs}+is%3Aopen)" if r["open"] else "–"
-        title = r["title"] if len(r["title"]) <= 64 else r["title"][:61] + "..."
-        rows.append(f"| [{name}](https://github.com/{name}) | {merged} | {opened} | "
-                    f"[{title.replace('|', '/')}]({r['url']}) | {ago(r['last'], now)} |")
-    return "\n".join(rows)
+def trail_row(name, r, t, now):
+    """One project, painted as its own strip so the README can wrap it in a link."""
+    W, H = 840, 62
+    merged = r["merged"] > 0
+    label = f'{r["merged"]} MERGED' if merged else f'{r["open"]} OPEN'
+    box = (f'<rect x="24" y="18" width="92" height="26" rx="2" fill="{t["red"]}"/>' if merged else
+           f'<rect x="24.5" y="18.5" width="91" height="25" rx="2" fill="none" stroke="{t["ink"]}"/>')
+    title = r["title"] if len(r["title"]) <= 78 else r["title"][:75] + "..."
+    extra = f'+{r["open"]} open · ' if merged and r["open"] else ""
+    body = (f'<g filter="url(#brush)">{box}</g>'
+            f'<text x="70" y="35" text-anchor="middle" font-family="{SERIF}" font-size="11" letter-spacing="1.5" '
+            f'fill="{SEAL_TEXT if merged else t["ink"]}">{label}</text>'
+            f'<text x="136" y="30" font-family="{SERIF}" font-size="16" font-weight="bold" fill="{t["ink"]}">'
+            f'{escape(name)}</text>'
+            f'<text x="136" y="50" font-family="{SERIF}" font-size="13" fill="{t["wash"]}">{escape(title)}</text>'
+            f'<text x="{W - 24}" y="30" text-anchor="end" font-family="{SERIF}" font-size="12" fill="{t["wash"]}">'
+            f'{extra}{ago(r["last"], now)}</text>')
+    return svg(W, H, t, body)
+
+
+def trail_markdown(s, repo):
+    """Each row is its own image inside its own link, so clicking a project opens my pull requests there."""
+    base = f"https://raw.githubusercontent.com/{repo}/output"
+    out = []
+    for i, (name, r) in enumerate(s["trail"]):
+        author = repo.split("/")[0]
+        href = f"https://github.com/{name}/pulls?q=is%3Apr+author%3A{author}"
+        alt = f'{name}: {r["merged"]} merged, {r["open"]} open pull requests'
+        out.append(f'<a href="{href}"><picture>'
+                   f'<source media="(prefers-color-scheme: dark)" srcset="{base}/row-{i}-dark.svg">'
+                   f'<img src="{base}/row-{i}-light.svg" width="100%" alt="{alt}">'
+                   f'</picture></a>\n')
+    return "".join(out)
 
 
 def update_readme(path, block):
@@ -328,7 +349,7 @@ def update_readme(path, block):
     old = Path(path).read_text(encoding="utf-8")
     head, rest = old.split(TRAIL_START, 1)
     _, tail = rest.split(TRAIL_END, 1)
-    new = f"{head}{TRAIL_START}\n\n{block}\n\n{TRAIL_END}{tail}"
+    new = f"{head}{TRAIL_START}\n\n{block}\n{TRAIL_END}{tail}"
     if new != old:
         Path(path).write_text(new, encoding="utf-8", newline="\n")
     return new != old
@@ -378,9 +399,12 @@ def main():
     s = summarize(fetch(login, token, now), now)
     for name, t in THEMES.items():
         (out / f"painting-{name}.svg").write_text(painting(s, t, now), encoding="utf-8")
+        for i, (repo_name, r) in enumerate(s["trail"]):
+            (out / f"row-{i}-{name}.svg").write_text(trail_row(repo_name, r, t, now), encoding="utf-8")
         (out / f"stats-{name}.svg").write_text(stats(s, t, now), encoding="utf-8")
     readme = sys.argv[2] if len(sys.argv) > 2 else None
-    changed = update_readme(readme, trail_markdown(s, login, now)) if readme else False
+    repo = os.environ.get("GITHUB_REPOSITORY", f"{login}/{login}")
+    changed = update_readme(readme, trail_markdown(s, repo)) if readme else False
     print(f"Drew {len(s['stalks'])} stalks, {s['contributions']} contributions. "
           f"README trail {'updated' if changed else 'unchanged'}.")
 
