@@ -19,7 +19,7 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
-from daily import HERE, THEMES, mountains, seal, svg
+from daily import HERE, SERIF, THEMES, mountains, seal, svg
 
 ASSETS = HERE.parent / "assets"
 
@@ -58,7 +58,14 @@ class Face:
 
 
 def text(face, s, x, y, size, fill, track=0):
+    """Brush lettering, drawn as outlines so it renders the same everywhere."""
     return f'<path d="{face.path(s, x, y, size, track)}" fill="{fill}"/>'
+
+
+def label(s, x, y, size, fill, track=0, anchor="start"):
+    """Plain text in a system serif. Much smaller than outlines, which keeps the page quick to load."""
+    return (f'<text x="{x:.0f}" y="{y:.0f}" text-anchor="{anchor}" font-family="{SERIF}" font-size="{size}" '
+            f'letter-spacing="{track}" fill="{fill}">{s}</text>')
 
 
 def banner(brush, serif, bold, t):
@@ -69,9 +76,9 @@ def banner(brush, serif, bold, t):
     body.append(text(brush, name, 70, 200, 118, t["ink"]))
     body.append(seal(70 + brush.width(name, 118) + 34, 104, 84, t))
     body.append(text(brush, "アリジット・コナル", 74, 256, 26, t["wash"], track=8))
-    body.append(text(bold, "MLOPS  ·  AI INFRASTRUCTURE", 72, 318, 21, t["ink"], track=5))
-    body.append(text(serif, "Curious builder. I find new tools, take them apart, and make them better.",
-                     72, 356, 21, t["wash"]))
+    body.append(label("MLOPS  ·  AI INFRASTRUCTURE", 72, 318, 20, t["ink"], track=5))
+    body.append(label("Curious builder. I find new tools, take them apart, and make them better.",
+                      72, 356, 20, t["wash"]))
     return svg(W, H, t, "".join(body))
 
 
@@ -94,14 +101,13 @@ CARDS = [
 def card(c, brush, serif, bold, t):
     W, H = 840, 160
     body = [f'<path d="{brush.boxed(c["kanji"], 64)}" fill="{t["red"]}" transform="translate(40,30)"/>',
-            text(bold, c["meaning"], 72 - bold.width(c["meaning"], 10, 3) / 2, 124, 10, t["wash"], track=3),
+            label(c["meaning"], 72, 124, 10, t["wash"], track=3, anchor="middle"),
             f'<path d="M140,28 V132" stroke="{t["wash"]}" stroke-width="1" opacity="0.5"/>',
             text(bold, c["title"], 164, 56, 28, t["ink"]),
-            text(bold, c["role"], 164 + bold.width(c["title"], 28) + 18, 55, 11, t["red"], track=2.5)]
+            label(c["role"], 164 + bold.width(c["title"], 28) + 18, 55, 11, t["red"], track=2.5)]
     for i, line in enumerate(c["lines"]):
-        assert serif.width(line, 14.5) < W - 164 - 24, f"card line too long: {line}"
-        body.append(text(serif, line, 164, 88 + i * 22, 14.5, t["wash"]))
-    body.append(text(bold, c["tools"], 164, 140, 10.5, t["ink"], track=2.2))
+        body.append(label(line, 164, 88 + i * 22, 14.5, t["wash"]))
+    body.append(label(c["tools"], 164, 140, 10.5, t["ink"], track=2.2))
     return svg(W, H, t, "".join(body))
 
 

@@ -37,12 +37,20 @@
   <img src="assets/heading-the-path-light.svg" width="100%" alt="The path">
 </picture></p>
 
-<a href="https://github.com/pulls?q=is%3Apr+author%3ASamurai007AK+-user%3ASamurai007AK">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/trail-dark.svg">
-  <img src="https://raw.githubusercontent.com/Samurai007AK/Samurai007AK/output/trail-light.svg" width="100%" alt="My pull requests to open-source projects, grouped by project">
-</picture>
-</a>
+<!-- trail:start -->
+
+| Project | Merged | Open | Latest pull request | |
+| --- | --- | --- | --- | --- |
+| [risa-labs-inc/BossConsole](https://github.com/risa-labs-inc/BossConsole) | **[1](https://github.com/risa-labs-inc/BossConsole/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Amerged)** | – | [fix(panels): drop unused PanelIds constants](https://github.com/risa-labs-inc/BossConsole/pull/720) | 2d ago |
+| [ApodexAI/FrontierAgent](https://github.com/ApodexAI/FrontierAgent) | **[2](https://github.com/ApodexAI/FrontierAgent/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Amerged)** | [1](https://github.com/ApodexAI/FrontierAgent/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Aopen) | [fix(apodex): prevent saved Bash allow from bypassing typed co...](https://github.com/ApodexAI/FrontierAgent/pull/42) | 7d ago |
+| [codeforstartups/dynavec](https://github.com/codeforstartups/dynavec) | **[1](https://github.com/codeforstartups/dynavec/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Amerged)** | – | [feat(concurrency): add max_pool_connections tuning](https://github.com/codeforstartups/dynavec/pull/175) | 10d ago |
+| [K4-LABS/gpumesh](https://github.com/K4-LABS/gpumesh) | **[23](https://github.com/K4-LABS/gpumesh/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Amerged)** | – | [Delete 'Prior art and credits' section](https://github.com/K4-LABS/gpumesh/pull/49) | 12d ago |
+| [sktime/sktime](https://github.com/sktime/sktime) | – | [1](https://github.com/sktime/sktime/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Aopen) | [[BUG] fix HyperTreeNetARForecaster FutureWarning for PeriodIn...](https://github.com/sktime/sktime/pull/11083) | 9d ago |
+| [krkn-chaos/krkn](https://github.com/krkn-chaos/krkn) | – | [1](https://github.com/krkn-chaos/krkn/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Aopen) | [fix(hogs): drain all worker exceptions in run_scenario](https://github.com/krkn-chaos/krkn/pull/1595) | 9d ago |
+| [kubeedge/ianvs](https://github.com/kubeedge/ianvs) | – | [1](https://github.com/kubeedge/ianvs/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Aopen) | [fix(pipl): remove phantom membership-inference-attacks depend...](https://github.com/kubeedge/ianvs/pull/999) | 9d ago |
+| [vllm-project/semantic-router](https://github.com/vllm-project/semantic-router) | – | [1](https://github.com/vllm-project/semantic-router/pulls?q=is%3Apr+author%3ASamurai007AK+is%3Aopen) | [[Feature] Trusted tool capability and stage-role facts](https://github.com/vllm-project/semantic-router/pull/3600) | 11d ago |
+
+<!-- trail:end -->
 
 <p align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/heading-today-dark.svg">

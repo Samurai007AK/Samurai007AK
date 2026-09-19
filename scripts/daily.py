@@ -66,7 +66,7 @@ query($login: String!, $month: DateTime!, $prs: String!) {
     }
   }
   search(query: $prs, type: ISSUE, first: 100) {
-    nodes { ... on PullRequest { title merged mergedAt createdAt state repository { nameWithOwner } } }
+    nodes { ... on PullRequest { title url merged mergedAt createdAt state repository { nameWithOwner } } }
   }
 }"""
 
@@ -126,11 +126,11 @@ def summarize(data, now):
         if not pr or (pr["state"] == "CLOSED" and not pr["merged"]):
             continue
         r = repos.setdefault(pr["repository"]["nameWithOwner"],
-                             dict(merged=0, open=0, last="", title=""))
+                             dict(merged=0, open=0, last="", title="", url=""))
         r["merged" if pr["merged"] else "open"] += 1
         when = pr["mergedAt"] or pr["createdAt"]
         if when > r["last"]:
-            r["last"], r["title"] = when, pr["title"]
+            r["last"], r["title"], r["url"] = when, pr["title"], pr["url"]
     # Projects with merged work first, newest activity first within each group.
     trail = sorted(repos.items(), key=lambda kv: kv[1]["last"], reverse=True)
     trail.sort(key=lambda kv: kv[1]["merged"] == 0)
@@ -306,32 +306,32 @@ def ago(iso, now):
     return "today" if d < 1 else f"{d}d ago" if d < 60 else f"{d // 30}mo ago"
 
 
-def trail(s, t, now):
-    W, row = 840, 54
-    H = 30 + row * len(s["trail"]) + 26
-    out = []
-    for i, (name, r) in enumerate(s["trail"]):
-        y = 22 + i * row
-        merged = r["merged"] > 0
-        label = f'{r["merged"]} MERGED' if merged else f'{r["open"]} OPEN'
-        box = (f'<rect x="24" y="{y + 6}" width="92" height="26" rx="2" fill="{t["red"]}"/>' if merged else
-               f'<rect x="24.5" y="{y + 6.5}" width="91" height="25" rx="2" fill="none" stroke="{t["ink"]}"/>')
-        out.append(f'<g filter="url(#brush)">{box}</g>')
-        out.append(f'<text x="70" y="{y + 23}" text-anchor="middle" font-family="{SERIF}" font-size="11" '
-                   f'letter-spacing="1.5" fill="{SEAL_TEXT if merged else t["ink"]}">{label}</text>')
-        title = r["title"] if len(r["title"]) <= 78 else r["title"][:75] + "..."
-        out.append(f'<text x="136" y="{y + 18}" font-family="{SERIF}" font-size="16" font-weight="bold" '
-                   f'fill="{t["ink"]}">{escape(name)}</text>')
-        out.append(f'<text x="136" y="{y + 38}" font-family="{SERIF}" font-size="13" fill="{t["wash"]}">'
-                   f'{escape(title)}</text>')
-        extra = f'+{r["open"]} open · ' if merged and r["open"] else ""
-        out.append(f'<text x="{W - 24}" y="{y + 18}" text-anchor="end" font-family="{SERIF}" font-size="12" '
-                   f'fill="{t["wash"]}">{extra}{ago(r["last"], now)}</text>')
-        if i:
-            out.append(f'<path d="M136,{y - 2} H{W - 24}" stroke="{t["wash"]}" stroke-width="0.6" opacity="0.35"/>')
-    out.append(f'<text x="{W / 2}" y="{H - 14}" text-anchor="middle" font-family="{SERIF}" font-size="11" '
-               f'letter-spacing="2" fill="{t["wash"]}">PULL REQUESTS TO OTHER PEOPLE\'S PROJECTS · REDRAWN DAILY</text>')
-    return svg(W, H, t, "".join(out))
+TRAIL_START, TRAIL_END = "<!-- trail:start -->", "<!-- trail:end -->"
+
+
+def trail_markdown(s, login, now):
+    """A markdown table, so each project and pull request is a real link GitHub can follow."""
+    rows = ["| Project | Merged | Open | Latest pull request | |",
+            "| --- | --- | --- | --- | --- |"]
+    for name, r in s["trail"]:
+        prs = f"https://github.com/{name}/pulls?q=is%3Apr+author%3A{login}"
+        merged = f"**[{r['merged']}]({prs}+is%3Amerged)**" if r["merged"] else "–"
+        opened = f"[{r['open']}]({prs}+is%3Aopen)" if r["open"] else "–"
+        title = r["title"] if len(r["title"]) <= 64 else r["title"][:61] + "..."
+        rows.append(f"| [{name}](https://github.com/{name}) | {merged} | {opened} | "
+                    f"[{title.replace('|', '/')}]({r['url']}) | {ago(r['last'], now)} |")
+    return "\n".join(rows)
+
+
+def update_readme(path, block):
+    """Rewrite only the marked region, and report whether anything actually changed."""
+    old = Path(path).read_text(encoding="utf-8")
+    head, rest = old.split(TRAIL_START, 1)
+    _, tail = rest.split(TRAIL_END, 1)
+    new = f"{head}{TRAIL_START}\n\n{block}\n\n{TRAIL_END}{tail}"
+    if new != old:
+        Path(path).write_text(new, encoding="utf-8", newline="\n")
+    return new != old
 
 
 def stats(s, t, now):
@@ -378,9 +378,11 @@ def main():
     s = summarize(fetch(login, token, now), now)
     for name, t in THEMES.items():
         (out / f"painting-{name}.svg").write_text(painting(s, t, now), encoding="utf-8")
-        (out / f"trail-{name}.svg").write_text(trail(s, t, now), encoding="utf-8")
         (out / f"stats-{name}.svg").write_text(stats(s, t, now), encoding="utf-8")
-    print(f"Drew {len(s['stalks'])} stalks, {len(s['trail'])} trail rows, {s['contributions']} contributions.")
+    readme = sys.argv[2] if len(sys.argv) > 2 else None
+    changed = update_readme(readme, trail_markdown(s, login, now)) if readme else False
+    print(f"Drew {len(s['stalks'])} stalks, {s['contributions']} contributions. "
+          f"README trail {'updated' if changed else 'unchanged'}.")
 
 
 if __name__ == "__main__":
