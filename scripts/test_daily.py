@@ -39,11 +39,12 @@ def main():
     assert names == ["pytorch/pytorch", "K4-LABS/gpumesh", "kubernetes/kubernetes"], names
     assert today["merged"] == 2 and today["projects"] == 3
 
-    # Every project becomes its own linked row pointing at my pull requests in that repo.
+    # Only projects with merged work get listed, each linking to my merged pull requests there.
     block = trail_markdown(today, "Samurai007AK/Samurai007AK")
-    assert block.count("<a href=") == 3, block
-    assert "https://github.com/pytorch/pytorch/pulls?q=is%3Apr+author%3ASamurai007AK" in block
-    assert "row-0-dark.svg" in block and "row-2-light.svg" in block
+    assert block.startswith("2 pull requests merged"), block
+    assert block.count("\n- [") == 2, block
+    assert "https://github.com/pytorch/pytorch/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK" in block
+    assert "kubernetes/kubernetes" not in block
 
     # A closed-but-never-merged pull request is left out, and my own repos never enter the query.
     only_closed = summarize(data([pr("some/repo", "CLOSED", False, "2026-09-01T00:00:00Z")]), NOW)

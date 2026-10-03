@@ -330,17 +330,12 @@ def trail_row(name, r, t, now):
 
 
 def trail_markdown(s, repo):
-    """Each row is its own image inside its own link, so clicking a project opens my pull requests there."""
-    base = f"https://raw.githubusercontent.com/{repo}/output"
-    out = []
-    for i, (name, r) in enumerate(s["trail"]):
-        author = repo.split("/")[0]
-        href = f"https://github.com/{name}/pulls?q=is%3Apr+author%3A{author}"
-        alt = f'{name}: {r["merged"]} merged, {r["open"]} open pull requests'
-        out.append(f'<a href="{href}"><picture>'
-                   f'<source media="(prefers-color-scheme: dark)" srcset="{base}/row-{i}-dark.svg">'
-                   f'<img src="{base}/row-{i}-light.svg" width="100%" alt="{alt}">'
-                   f'</picture></a>\n')
+    """Plain markdown: how many pull requests got merged upstream, and a link to each project they landed in."""
+    author = repo.split("/")[0]
+    out = [f'{s["merged"]} pull requests merged into other people\'s projects:\n\n']
+    for name, r in s["trail"]:
+        if r["merged"]:
+            out.append(f"- [{name}](https://github.com/{name}/pulls?q=is%3Apr+is%3Amerged+author%3A{author})\n")
     return "".join(out)
 
 
