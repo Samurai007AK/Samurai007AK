@@ -6,8 +6,9 @@ I work on MLOps and AI infrastructure. I like finding new tools, taking them apa
 
 <!-- trail:start -->
 
-31 pull requests merged into other people's projects:
+32 pull requests merged into other people's projects:
 
+- [vllm-project/semantic-router](https://github.com/vllm-project/semantic-router/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [Project-HAMi/HAMi](https://github.com/Project-HAMi/HAMi/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [JuliaLang/julia](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [krkn-chaos/krkn](https://github.com/krkn-chaos/krkn/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
