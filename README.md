@@ -8,6 +8,7 @@ I work on MLOps and AI infrastructure. I like finding new tools, taking them apa
 
 33 pull requests merged into other people's projects:
 
+- [K4-LABS/gpumesh](https://github.com/K4-LABS/gpumesh/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [JuliaLang/julia](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [vllm-project/semantic-router](https://github.com/vllm-project/semantic-router/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [Project-HAMi/HAMi](https://github.com/Project-HAMi/HAMi/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
@@ -15,7 +16,6 @@ I work on MLOps and AI infrastructure. I like finding new tools, taking them apa
 - [ApodexAI/FrontierAgent](https://github.com/ApodexAI/FrontierAgent/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [risa-labs-inc/BossConsole](https://github.com/risa-labs-inc/BossConsole/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [codeforstartups/dynavec](https://github.com/codeforstartups/dynavec/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
-- [K4-LABS/gpumesh](https://github.com/K4-LABS/gpumesh/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 
 <!-- trail:end -->
 
