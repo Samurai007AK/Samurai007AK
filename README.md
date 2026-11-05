@@ -6,7 +6,7 @@ I work on MLOps and AI infrastructure. I like finding new tools, taking them apa
 
 <!-- trail:start -->
 
-
+34 pull requests merged into other people's projects:
 
 - [K4-LABS/gpumesh](https://github.com/K4-LABS/gpumesh/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
 - [JuliaLang/julia](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+author%3ASamurai007AK)
